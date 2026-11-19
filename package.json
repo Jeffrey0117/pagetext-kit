@@ -4,9 +4,32 @@
   "description": "新站的寫法：畫面上給人看的字不寫在標籤裡，集中放每頁的內容檔。附自動檢查（違反就不給過）、給 AI 的規則、帶變數的字串小工具",
   "main": "index.js",
   "scripts": {
+    "test": "node --test",
     "example": "node example.js"
   },
-  "keywords": [],
+  "keywords": [
+    "kit",
+    "copy",
+    "text",
+    "jsx",
+    "lint"
+  ],
   "author": "Jeffrey0117",
-  "license": "MIT"
+  "license": "MIT",
+  "types": "index.d.ts",
+  "bin": {
+    "pagetext": "bin/pagetext.js"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "lib",
+    "bin",
+    "rule.md",
+    "SKILL.md",
+    "kit-checks.json"
+  ],
+  "dependencies": {
+    "typescript": "^5.6.0"
+  }
 }

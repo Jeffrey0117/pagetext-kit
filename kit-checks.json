@@ -1,0 +1,21 @@
+{
+  "_schema": "kit-kit audit.js 的格式：{ id, rule, fix, pattern, files, severity }。pattern 與 files 都是 JS RegExp 字串（無 flags），pattern 逐行比對，files 比對專案內的相對路徑。",
+  "checks": [
+    {
+      "id": "cjk-between-tags",
+      "severity": "medium",
+      "pattern": "^(?!.*text-ok)(?!\\s*(?:\\*|//|/\\*)).*>[^<>{}]*[\\u3400-\\u9fff][^<>{}]*</",
+      "files": "^(?!.*(?:node_modules|\\.next/|dist/|build/|coverage/|\\.test\\.|\\.spec\\.|\\.stories\\.|\\.text\\.)).*\\.(tsx|jsx)$",
+      "rule": "用了 pagetext-kit 的專案，畫面上給人看的字不能直接寫在標籤裡。",
+      "fix": "把字搬到同名的 .text.ts，頁面裡改用 {t.xxx}。完整清單跑 npx pagetext check。"
+    },
+    {
+      "id": "build-skips-check",
+      "severity": "high",
+      "pattern": "^\\s*\"build\"\\s*:\\s*\"(?!.*pagetext check)",
+      "files": "^package\\.json$",
+      "rule": "build 沒有先跑 pagetext check，規則就只是寫好看的，AI 寫久了一定會漏。",
+      "fix": "跑 npx pagetext init，或把 build 改成 \"pagetext check && <原本的 build>\"。"
+    }
+  ]
+}
